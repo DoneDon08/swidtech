@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width" />
     <title>Swidtech</title>
     <link rel="icon" type="image/x-icon" href="/images/logo2.ico">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q79PXBZHNJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q79PXBZHNJ');
+    </script>
+</head>
     <style>
     @font-face {
         font-family: 'MyBauhaus'; /* You can name it anything */
@@ -613,7 +623,6 @@
 
     }
     </style>
-</head>
 <body>
     <div class="menu"></div>
     <div class="bg-layer">
@@ -933,7 +942,7 @@
 
     container.innerHTML=""
 
-    title.innerText = mode === "problem"
+   title.innerText = mode === "problem"
     ? (device === "gas" ? "Gas Stove" :
        device === "tablet" ? "Heating Tablets" :
        "Petrol Stove")
@@ -1003,4 +1012,3 @@
     </script>
 </body> 
 </html>
-
