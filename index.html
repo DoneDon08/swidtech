@@ -6,14 +6,6 @@
     <title>Swidtech</title>
     <link rel="icon" type="image/x-icon" href="/images/logo2.ico">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q79PXBZHNJ"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-Q79PXBZHNJ');
-    </script>
 </head>
     <style>
     @font-face {
@@ -429,6 +421,84 @@
     border: 1px solid #9f9f9f;
     box-shadow: 0 0 1px 1px white;
     }
+
+    .gallery-section{
+    width:min(96%,1200px);
+    margin:100px auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:white;
+    }
+
+    .gallery-title{
+    font-size:40px;
+    }
+
+    .gallery-button{
+    background:#111;
+    border:1px solid #555;
+    color:white;
+    padding:12px 25px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.3s;
+    }
+
+    .gallery-button:hover{
+    background:#333;
+    }
+
+    /* GALLERY MODAL */
+
+    .gallery-modal{
+    max-width:900px;
+    max-height:80vh;
+    overflow-y:auto;
+    }
+
+    .gallery-modal-title{
+    text-align:center;
+    margin-bottom:40px;
+    }
+
+    .close-gallery{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:28px;
+    cursor:pointer;
+    }
+
+    /* TIMELINE */
+
+    .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:60px;
+    }
+
+    .timeline-item h3{
+    margin-bottom:20px;
+    font-size:24px;
+    color:white;
+}
+
+.timeline-item img{
+width:100%;
+max-width:500px;
+border-radius:12px;
+box-shadow:0 0 20px rgba(255,255,255,0.2);
+}
+
+/* GRID FOR MULTIPLE IMAGES */
+
+.timeline-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
     .newsletter-section {
         width: min(96%, 1200px);
         margin: 100px auto;
@@ -624,6 +694,31 @@
     }
     </style>
 <body>
+    <div id="cookieModal" class="modal">
+
+    <div class="modal-content" style="max-width:420px;text-align:center;">
+
+        <h2>Cookie Consent</h2>
+
+        <p style="font-size:15px;line-height:1.4;">
+        This website uses analytics cookies to understand how visitors use the site and improve the experience.
+        </p>
+
+        <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;">
+
+        <button id="acceptCookies"
+        style="background:#0f0;color:black;padding:10px 20px;border:none;border-radius:10px;cursor:pointer;">
+        Accept
+        </button>
+
+        <button id="rejectCookies"
+        style="background:#222;color:white;padding:10px 20px;border:1px solid #555;border-radius:10px;cursor:pointer;">
+        Reject
+        </button>
+
+        </div>
+    </div>
+    </div>
     <div class="menu"></div>
     <div class="bg-layer">
         <h1 class="main">
@@ -757,14 +852,75 @@
         </div>
 
     </div>
-    
+    <section class="gallery-section">
+
+        <h1 class="gallery-title">Development Timeline</h1>
+
+        <button class="gallery-button" id="openGallery">
+        View Gallery
+        </button>
+
+    </section>
+
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="modal">
+
+        <div class="modal-content gallery-modal">
+
+            <span class="close-gallery">&times;</span>
+
+            <h2 class="gallery-modal-title">Swidheat over the years</h2>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <h3>2023 – First Generation</h3>
+                    <img src="images/gen1.jpg">
+                </div>
+
+                <div class="timeline-item">
+                    <h3>2024 – Second Generation</h3>
+                    <img src="images/gen2.jpg">
+                </div>
+
+                <div class="timeline-item">
+                    <h3>2025 – Third Generation</h3>
+
+                    <div class="timeline-grid">
+                        <img src="images/gen31.jpg">
+                        <img src="images/gen33.jpg">
+                        <img src="images/gen32.jpg">
+                        <img src="images/gen34.jpg">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
     <div class="newsletter-section">
         <div class="newsletter-container">
             <div class="newsletter-form">
-                 <h2>Stay Updated</h2>
-            <p>Subscribe to get the latest news about Swidheat.</p>
-                <iframe data-tally-src="https://tally.so/embed/q4BEYG?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="277" frameborder="0" marginheight="0" marginwidth="0" title="Newsletter Signup Form Template"></iframe>
-<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+                <h2>Stay Updated</h2>
+                <p>Subscribe to get the latest news about Swidheat.</p>
+
+                <iframe 
+                    data-tally-src="https://tally.so/embed/q4BEYG?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+                    loading="lazy" 
+                    width="100%" 
+                    height="277" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    title="Newsletter Signup Form Template">
+                </iframe>
+
+                <p style="font-size:12px; color:#aaa; text-align:center; margin-top:10px;">
+                    By signing up, you agree to our 
+                    <a href="privacy.html" target="_blank" style="color:#0f0;">Privacy Policy</a>.
+                </p>
             </div>
             <div class="newsletter-image">
                 <img src="images/heater2.png" alt="Newsletter Image">
@@ -778,9 +934,9 @@
                 <div class="logo"></div>
             </div>
             <div class="footer-contact">
-                <p>Contact us: <a href="mailto:hello@swidheat.com">hello@swidheat.com</a></p>
-                <p><a href="#unsubscribe" class="unsubscribe-link">Unsubscribe</a></p>
-                <p><a href="privacy.html" class="privacy-link">Privacy Policy</a></p>
+                <p>Contact us: <a href="mailto:hello@swidheat.com" style="color: #0f0;">hello@swidheat.com</a></p>
+                <p><a href="#unsubscribe" class="unsubscribe-link" style="color: #0f0;">Unsubscribe</a></p>
+                <p><a href="privacy.html" class="privacy-link" style="color: #0f0;">Privacy Policy</a></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -826,6 +982,8 @@
     btn.onclick = function(e){
         e.preventDefault(); // Prevent default anchor behavior
         modal.style.display = "flex";
+
+        gtag('event', 'unsubscribe_modal_open');
     }
 
     span.onclick = function(){
@@ -842,6 +1000,23 @@
 
 
     <script>
+    window.gtag = window.gtag || function(){};
+    function loadAnalytics(){
+        const script = document.createElement("script");
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-Q79PXBZHNJ";
+        script.async = true;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+
+        gtag('js', new Date());
+        gtag('config', 'G-Q79PXBZHNJ', {
+            anonymize_ip: true
+        });
+
+    }
     let mode = "problem"
     let device = "gas"
 
@@ -974,6 +1149,10 @@
     function setDevice(d){
     device = d;
 
+    gtag('event', 'device_selector', {
+    parameter_name: d
+    });
+
     // Highlight the active button
     const buttons = document.querySelectorAll(".device-buttons button");
     buttons.forEach(btn => {
@@ -989,26 +1168,116 @@
 
     function toggleMode(){
 
-    const switchElement = document.getElementById("modeSwitch")
+        const switchElement = document.getElementById("modeSwitch")
 
-    if(switchElement.checked){
-    mode="solution"
-    }else{
-    mode="problem"
+        if(switchElement.checked){
+        mode="solution"
+        }else{
+        mode="problem"
+        }
+        gtag('event', 'toggle_switch', {
+            parameter_name: mode
+            });
+        render()
+
     }
 
     render()
 
+    const galleryModal = document.getElementById("galleryModal");
+    const openGallery = document.getElementById("openGallery");
+    const closeGallery = document.querySelector(".close-gallery");
+
+    openGallery.onclick = function(){
+
+    galleryModal.style.display = "flex";
+
+    gtag('event', 'gallery_open');
+
+    }
+    closeGallery.onclick = function(){
+    galleryModal.style.display = "none";
     }
 
-    render()
-
+    window.addEventListener("click", function(e){
+    if(e.target === galleryModal){
+    galleryModal.style.display = "none";
+    }
+    });
 
     document.addEventListener("click", e => {
         document.querySelectorAll(".bullet.active").forEach(card => {
             if(!card.contains(e.target)) card.classList.remove("active")
         });
     });
+
+    let scroll50Sent = false;
+    let scroll90Sent = false;
+
+    window.addEventListener("scroll", () => {
+
+    const scrollPercent =
+    (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+
+    if(scrollPercent > 50 && !scroll50Sent){
+        scroll50Sent = true;
+        gtag('event', 'scroll_depth', {
+            percent: 50
+        });
+    }
+
+    if(scrollPercent > 90 && !scroll90Sent){
+        scroll90Sent = true;
+        gtag('event', 'scroll_depth', {
+            percent: 90
+        });
+    }
+
+    });
+    document.querySelectorAll(".bullet").forEach(card => {
+
+    card.addEventListener("click", () => {
+
+    const feature = card.querySelector("h2").innerText;
+
+    gtag('event', 'feature_click', {
+    feature_name: feature
+    });
+
+    card.classList.toggle("active");
+
+    });
+
+    });
+    </script>
+    <script>
+
+    const cookieModal = document.getElementById("cookieModal")
+
+    if(!localStorage.getItem("cookieConsent")){
+        cookieModal.style.display = "flex"
+    }
+
+    document.getElementById("acceptCookies").onclick = () => {
+
+        localStorage.setItem("cookieConsent","accepted")
+        cookieModal.style.display = "none"
+
+        loadAnalytics()
+
+    }
+
+    document.getElementById("rejectCookies").onclick = () => {
+
+        localStorage.setItem("cookieConsent","rejected")
+        cookieModal.style.display = "none"
+
+    }
+
+    if(localStorage.getItem("cookieConsent") === "accepted"){
+        loadAnalytics()
+    }
+
     </script>
 </body> 
 </html>
