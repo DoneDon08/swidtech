@@ -949,6 +949,7 @@ gap:20px;
             <div class="footer-contact">
                 <p>Contact us: <a href="mailto:molnar.donat@swidtech.com" style="color: #0f0;">molnar.donat@swidtech.com</a></p>
                 <p><a href="#unsubscribe" class="unsubscribe-link" style="color: #0f0;">Unsubscribe</a></p>
+                <p><a href="#" onclick="openCookieSettings()" style="color:#0f0;">Cookie Settings</a></p>
                 <p><a href="privacy.html" class="privacy-link" style="color: #0f0;">Privacy Policy</a></p>
             </div>
         </div>
@@ -1009,7 +1010,13 @@ gap:20px;
         }
     }
     </script>
-
+    
+    <script>
+        function openCookieSettings(){
+            localStorage.removeItem("cookieConsent");
+            document.getElementById("cookieModal").style.display = "flex";
+        }
+    </script>
 
 
     <script>
@@ -1267,13 +1274,18 @@ gap:20px;
 
     const cookieModal = document.getElementById("cookieModal")
 
-    if(!localStorage.getItem("cookieConsent")){
-        cookieModal.style.display = "flex"
+    const consent = JSON.parse(localStorage.getItem("cookieConsent"));
+
+    if(!consent || (Date.now() - consent.time) > 7 * 24 * 60 * 60 * 1000){
+        cookieModal.style.display = "flex";
     }
 
     document.getElementById("acceptCookies").onclick = () => {
 
-        localStorage.setItem("cookieConsent","accepted")
+        localStorage.setItem("cookieConsent", JSON.stringify({
+            status: "accepted",
+            time: Date.now()
+        }));
         cookieModal.style.display = "none"
 
         loadAnalytics()
@@ -1282,17 +1294,20 @@ gap:20px;
 
     document.getElementById("rejectCookies").onclick = () => {
 
-        localStorage.setItem("cookieConsent","rejected")
+        localStorage.setItem("cookieConsent", JSON.stringify({
+            status: "rejected",
+            time: Date.now()
+        }));
         cookieModal.style.display = "none"
 
     }
 
-    if(localStorage.getItem("cookieConsent") === "accepted"){
-        loadAnalytics()
+    const consentData = JSON.parse(localStorage.getItem("cookieConsent"));
+
+    if(consentData && consentData.status === "accepted"){
+        loadAnalytics();
     }
 
     </script>
 </body> 
 </html>
-
-
